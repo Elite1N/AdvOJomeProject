@@ -10,7 +10,7 @@ pygame.init()
 #create game window
 SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
-
+print (1+1)
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("The adventure of JOMEss!!")
 clock = pygame.time.Clock()
