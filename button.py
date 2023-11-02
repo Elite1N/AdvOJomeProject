@@ -18,7 +18,7 @@ class Button():
 		self.clicked = False
 
 	def draw(self, surface):
-		#action = False
+		action = False
 		#get mouse position
 		pos = pygame.mouse.get_pos()
 		
@@ -35,4 +35,4 @@ class Button():
 		#draw button on screen
 		surface.blit(self.image, self.rect.topleft)
 		
-		#return action
+		return action

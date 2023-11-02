@@ -5,6 +5,7 @@ import charactor_sprite
 import spritesheet
 import unanimated_sprite
 import health_bar_sprite
+import rock_paper_scissors
 from pygame import mixer
 pygame.init()
 #create game window
@@ -35,8 +36,9 @@ attack_img = pygame.image.load("images/button_attack.png").convert_alpha()
 monster_img = pygame.image.load("images/monster.png").convert_alpha()
 game_over_img = pygame.image.load("images/game_over.png").convert_alpha()
 background = pygame.image.load("images/background.png").convert_alpha()
-
-
+rock_img =  pygame.image.load("rock.png").convert_alpha()
+paper_img = pygame.image.load("paper.png").convert_alpha()
+scissors_img = pygame.image.load("scissors.png").convert_alpha()
 
 #load sounds
 click_sound = pygame.mixer.Sound("sfx/mouse_click.mp3")
@@ -50,8 +52,12 @@ game_over_sprite = unanimated_sprite.Sprite((SCREEN_WIDTH // 2)-360, 0, game_ove
 player_sprite = charactor_sprite.Sprite((SCREEN_WIDTH // 2)-500, 400, player_img, 2.5)
 monster_sprite = charactor_sprite.Sprite((SCREEN_WIDTH // 2)+150, 230, monster_img, 7)
 background = pygame.transform.scale(background, (SCREEN_WIDTH, SCREEN_HEIGHT))
-health_bar = health_bar_sprite.Sprite((255,0,0),(SCREEN_WIDTH // 2)-350, 50,20)
-monster_sprite_mini = charactor_sprite.Sprite((SCREEN_WIDTH // 2)-390, 20, monster_img, 2)
+health_bar = health_bar_sprite.Sprite((255,0,0),(SCREEN_WIDTH // 2)-300, 50,20)
+#border = pygame.transform.scale(border, (640,360))
+rock = button.Button((SCREEN_WIDTH // 2)-400, 580, rock_img, 1)
+paper = button.Button((SCREEN_WIDTH // 2), 580, paper_img, 1)
+scissors = button.Button((SCREEN_WIDTH // 2)+400, 580, scissors_img, 1)
+
 time = 120
 font = pygame.font.Font('freesansbold.ttf', 32)
 text = font.render(f'{time}', True, (196, 43, 43))
@@ -85,27 +91,42 @@ while run:
       screen.blit(text,textRect)
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
-      
-      
+     
       #health bar
       
       if health_bar.draw(screen,monster_health,monster_sprite.health):
          monster_health -= 1
          print(monster_health)
-      monster_sprite_mini.draw(screen)
+      
       if attack_button.draw(screen):
         monster_sprite.receive_damage(10)
-        print(monster_sprite.health)
+        print(monster_sprite.health) 
+        menu_state = "RPS"
+
+        
         
         if monster_sprite.health == 0:
            menu_state = "game_over"
+  elif menu_state == "RPS":
+    rock.draw(screen)
+    paper.draw(screen)
+    scissors.draw(screen) 
+    time-=0.1
       
+    if time<=0:
+      menu_state = "game_over"
+    text = font.render(f'{round(time,2)}', True, (196, 43, 43))
+    screen.blit(text,textRect)
+    player_sprite.draw(screen)
+    monster_sprite.draw(screen)
+    health_bar.draw(screen,monster_health,monster_sprite.health)
+  
   elif menu_state == "game_over":
-     game_over_sprite.draw(screen)
-     if exit_button.draw(screen):
-        run = False
+    game_over_sprite.draw(screen)
+    if exit_button.draw(screen):
+      run = False
 
-     
+   
      
   #event handler
   for event in pygame.event.get():
@@ -118,5 +139,5 @@ while run:
   
   
   
-  #print (x)
+  
 pygame.quit()
