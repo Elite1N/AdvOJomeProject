@@ -1,4 +1,4 @@
-#setting
+#test
 import pygame
 import button
 import charactor_sprite
