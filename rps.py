@@ -2,32 +2,29 @@ import pygame
 import random
 
 choices = ["Rock", "Paper", "Scissors"]
-count = 0
 class RPS:
-    def __init__(self):
-        self.player_choice = "None"
+    def __init__(self,player_choice, computer_choice, count):
+        self.player_choice = player_choice
         self.computer_choice = "None"
         #self.result = "None"
-        self.count = 0
+        self.count = count
 
     def play(self, player_choice):
+        print('Hi')
         self.player_choice = player_choice
         self.computer_choice = random.choice(choices)
+        print(player_choice)
+        print(self.computer_choice)
         if self.player_choice == self.computer_choice:
-            #elf.result = "Tied"
+            print ("Tied")
             pass
         elif (self.player_choice == "Rock" and self.computer_choice == "Scissors") or \
                 (self.player_choice == "Paper" and self.computer_choice == "Rock") or \
                 (self.player_choice == "Scissors" and self.computer_choice == "Paper"):
-            #self.result = "You Win"
-            self.count+=1
+            print ('You win!!!')
             
         else:
-            #self.result = "Computer Wins"
-            self.count=0
-        if self.count >= 2:
-            print ('You win!!!')
-        else :
-            print ('Fuck you!!!')
+            print ("Com wins")
+            
 
 
