@@ -133,7 +133,6 @@ while run:
       if scissors_button.draw(screen):
         rpsgame.play("Scissors")
       #health bar
-      #change commit type
       if health_bar.draw(screen,monster_health,monster_sprite.health):
          monster_health -= 1
          print(monster_health)
