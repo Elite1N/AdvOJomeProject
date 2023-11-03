@@ -59,7 +59,7 @@ monster_sprite_mini = charactor_sprite.Sprite((SCREEN_WIDTH // 2)-390, 20, monst
 rock_button = button.Button((SCREEN_WIDTH // 2)-450, 580, rock_img, 1)
 paper_button = button.Button((SCREEN_WIDTH // 2)-50, 580, paper_img, 1)
 scissors_button = button.Button((SCREEN_WIDTH // 2)+350, 580, scissors_img, 1)
-rpsgame = rps.RPS("None", "None", 3)
+rpsgame = rps.RPS("None")
 time = 120
 font = pygame.font.Font('freesansbold.ttf', 32)
 text = font.render(f'{time}', True, (196, 43, 43))
@@ -126,12 +126,16 @@ while run:
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
       
+      #Rock Paper Scissors!!!!!
       if rock_button.draw(screen):
         rpsgame.play("Rock")
       if paper_button.draw(screen):
         rpsgame.play("Paper")
       if scissors_button.draw(screen):
         rpsgame.play("Scissors")
+      
+      if rpsgame.wincheck():
+        menu_state = "game_over"
       #health bar
       if health_bar.draw(screen,monster_health,monster_sprite.health):
          monster_health -= 1
