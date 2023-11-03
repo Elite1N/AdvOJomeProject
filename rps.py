@@ -9,6 +9,7 @@ class RPS:
         self.win = 0
         self.lose = 0
         self.victory = False
+        self.defeat = False
 
     def play(self, player_choice):
         
@@ -41,7 +42,8 @@ class RPS:
             print ('You also sucks')
             self.count = 0 
             self.win = 0
-            self.lose = 0           
+            self.lose = 0  
+            self.defeat = True         
         
         
         elif self.win >= 2 :
@@ -55,4 +57,8 @@ class RPS:
 
     def wincheck(self):
         return self.victory
+    def lostcheck(self):
+        return self.defeat
+
+        
 

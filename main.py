@@ -136,6 +136,13 @@ while run:
       
       if rpsgame.wincheck():
         menu_state = "game_over"
+        rpsgame.victory = False
+        
+      if rpsgame.lostcheck():
+        menu_state = "main_game"
+        rpsgame.defeat = False 
+        time-=30
+      
       #health bar
       if health_bar.draw(screen,monster_health,monster_sprite.health):
          monster_health -= 1
