@@ -1,9 +1,6 @@
 import pygame
 from pygame import mixer
 pygame.init()
-mixer.music.load("sfx/song.wav")
-mixer.music.set_volume(0.5)
-mixer.music.play(-1)
 click_sound = pygame.mixer.Sound("sfx/mouse_click.mp3")
 
 
