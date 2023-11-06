@@ -120,17 +120,17 @@ while run:
       
       if health_bar.draw(screen,monster_health,monster_sprite.health):
          monster_health += 1
-         print("monster_sprite:",monster_sprite.health)
+         #print("monster_sprite:",monster_sprite.health)
          print("monster_health:",monster_health)
 
       if health_bar.draw(screen,monster_health,monster_sprite.health) == False:
          monster_health -= 1
-         print("monster_sprite:",monster_sprite.health)
+         #print("monster_sprite:",monster_sprite.health)
          print("monster_health:",monster_health)
       
 
       monster_sprite_mini.draw(screen)
-      print(health_bar.draw(screen,monster_health,monster_sprite.health))
+      #print(health_bar.draw(screen,monster_health,monster_sprite.health))
       if attack_button.draw(screen):
           menu_state = random_game
                      
