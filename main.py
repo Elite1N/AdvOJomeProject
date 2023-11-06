@@ -93,7 +93,6 @@ while run:
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
       
-      
       #health bar
       
       if health_bar.draw(screen,monster_health,monster_sprite.health):
@@ -121,7 +120,11 @@ while run:
       
       if time<=0:
         menu_state = "game_over"
+      
+      #Text GUI
       text = font.render(f'{round(time,2)}', True, (196, 43, 43))
+      text = font.render(f'{round(time,2)}', True, (196, 43, 43))
+      
       screen.blit(text,textRect)
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
@@ -143,11 +146,6 @@ while run:
         rpsgame.defeat = False 
         time-=30
       
-      #health bar
-      if health_bar.draw(screen,monster_health,monster_sprite.health):
-         monster_health -= 1
-         print(monster_health)
-      monster_sprite_mini.draw(screen)
        
   
   elif menu_state == "game_over":   #Game Over
