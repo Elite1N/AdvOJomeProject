@@ -1,9 +1,6 @@
 import pygame
 from pygame import mixer
 pygame.init()
-mixer.music.load("sfx/song.wav")
-mixer.music.set_volume(0.5)
-mixer.music.play(-1)
 click_sound = pygame.mixer.Sound("sfx/mouse_click.mp3")
 
 
@@ -18,7 +15,7 @@ class Button():
 		self.clicked = False
 
 	def draw(self, surface):
-		action = False
+		#action = False
 		#get mouse position
 		pos = pygame.mouse.get_pos()
 		
@@ -35,4 +32,4 @@ class Button():
 		#draw button on screen
 		surface.blit(self.image, self.rect.topleft)
 		
-		return action
+		#return action

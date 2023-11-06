@@ -22,28 +22,22 @@ choices = ["Rock", "Paper", "Scissors"]
 
 class Game:
     def __init__(self):
-        self.player_choice = "None"
-        self.computer_choice = "None"
-        self.result = "None"
-        self.count = 0
-        self.tries = 0
+        self.player_choice = None
+        self.computer_choice = None
+        self.result = None
+
     def play(self, player_choice):
         self.player_choice = player_choice
         self.computer_choice = random.choice(choices)
         if self.player_choice == self.computer_choice:
             self.result = "Tied"
-            
         elif (self.player_choice == "Rock" and self.computer_choice == "Scissors") or \
                 (self.player_choice == "Paper" and self.computer_choice == "Rock") or \
                 (self.player_choice == "Scissors" and self.computer_choice == "Paper"):
             self.result = "You Win"
-            self.count +=1
         else:
             self.result = "Computer Wins"
-            self.count = 0
-        if self.count == 3 :
-            print ("You Win!!!!!")
-        print (self.count)
+
     def draw(self):
         screen.fill(WHITE)
         screen.blit(rock_img, (100, 200))
@@ -70,21 +64,16 @@ def main():
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
-            
+
             if event.type == pygame.MOUSEBUTTONDOWN:
                 x, y = pygame.mouse.get_pos()
                 if 100 <= x <= 200:
                     game_instance.play("Rock")
-                    game_instance.tries+=1
                 elif 300 <= x <= 400:
                     game_instance.play("Paper")
-                    game_instance.tries+=1
                 elif 500 <= x <= 600:
                     game_instance.play("Scissors")
-                    game_instance.tries+=1
-             
-            if game_instance.tries == 3 :
-                print ('Out of tries')
+
         game_instance.draw()
 
     pygame.quit()
