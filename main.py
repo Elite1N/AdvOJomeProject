@@ -8,6 +8,7 @@ import random
 import rps
 from black_jack import Black_jack
 from pygame import mixer
+import textobject
 pygame.init()
 #create game window
 SCREEN_WIDTH = 1280
@@ -75,10 +76,7 @@ rpsgame = rps.RPS("None")
 
 #constant
 time = 120
-font = pygame.font.Font('freesansbold.ttf', 32)
-text = font.render(f'{time}', True, (196, 43, 43))
-textRect = text.get_rect()
-textRect.center = (640,100)
+
 monster_health = 0
 FPS = 60
 Final_boss = False
@@ -97,7 +95,7 @@ while run:
   random_damage = random.randint(1, 3)
   screen.blit(background, (0, 0))
   random_game = random.choice(game_list)
-  
+
   if menu_state == "main":
     if play_button.draw(screen):
         menu_state = "main_game"
@@ -107,11 +105,11 @@ while run:
   #check if the options menu is open
   elif menu_state == "main_game":
       time-=1/60
-      
+      TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+      TimeText.draw()
       if time<=0:
         menu_state = "game_over"
-      text = font.render(f'{round(time,2)}', True, (196, 43, 43))
-      screen.blit(text,textRect)
+
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
       
@@ -158,8 +156,9 @@ while run:
     
     if monster_health == 0:
        menu_state = "game_over"
-    
-
+    TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+    TimeText.draw()
+    time-=1/60
      
       
   elif menu_state == "game_over":
@@ -168,16 +167,12 @@ while run:
         run = False
   
   elif menu_state == "RPS":               #Rock Paper Scissors
-      time-=0.1
-      
+      TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+      TimeText.draw()
+      time-=1/60
       if time<=0:
         menu_state = "game_over"
       
-      #Text GUI
-      text = font.render(f'{round(time,2)}', True, (196, 43, 43))
-      text = font.render(f'{round(time,2)}', True, (196, 43, 43))
-      
-      screen.blit(text,textRect)
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
       
@@ -200,6 +195,9 @@ while run:
         
 
   elif menu_state == "black_jack":
+    TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+    TimeText.draw()
+    time-=1/60
     if not(bjvalid):
       bj = Black_jack(screen)
       bjvalid = True
