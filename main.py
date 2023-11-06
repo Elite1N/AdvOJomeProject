@@ -15,7 +15,7 @@ SCREEN_WIDTH = 1280
 SCREEN_HEIGHT = 720
 
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-pygame.display.set_caption("The adventure of JOMEss!!")
+pygame.display.set_caption("Adventure in Novigrad")
 clock = pygame.time.Clock()
 #song
 mixer.music.load("sfx/song.wav")
@@ -69,9 +69,13 @@ play_button = button.Button((SCREEN_WIDTH // 2)-100, 300, play_img, 4)
 exit_button = button.Button((SCREEN_WIDTH // 2)-100, 500, exit_img, 4)
 attack_button = button.Button((SCREEN_WIDTH // 2)-400, 580, attack_img, 4)
 
-rock_button = button.Button((SCREEN_WIDTH // 2)-450, 580, rock_img, 1)
-paper_button = button.Button((SCREEN_WIDTH // 2)-50, 580, paper_img, 1)
-scissors_button = button.Button((SCREEN_WIDTH // 2)+350, 580, scissors_img, 1)
+rock_button = button.Button((SCREEN_WIDTH // 2)-450, 550, rock_img, 1)
+paper_button = button.Button((SCREEN_WIDTH // 2)-50, 550, paper_img, 1)
+scissors_button = button.Button((SCREEN_WIDTH // 2)+350, 550, scissors_img, 1)
+
+playerpick = rock_img
+player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 300, playerpick, 1)
+
 rpsgame = rps.RPS("None")
 
 #constant
@@ -112,7 +116,7 @@ while run:
 
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
-      
+
       
       #health bar
       
@@ -138,7 +142,7 @@ while run:
              
         
         
-  elif menu_state == "final_boss":
+  elif menu_state == "final_boss":       #final boss
     if final_boss:
        monster_sprite.health = 100
        monster_health = 0
@@ -161,7 +165,7 @@ while run:
     time-=1/60
      
       
-  elif menu_state == "game_over":
+  elif menu_state == "game_over":         #gameover
      game_over_sprite.draw(screen)
      if exit_button1.draw(screen):
         run = False
@@ -170,19 +174,34 @@ while run:
       TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
       TimeText.draw()
       time-=1/60
+      
+      Result = textobject.Text(640,150,32,(196, 43, 43),f'{rpsgame.win} - {rpsgame.lose}',screen)
+      Result.draw()
+      
+      RoundCount = textobject.Text(640,475,32,(250, 250, 250),f'Round {rpsgame.win + rpsgame.lose} / 3',screen)
+      RoundCount.draw()
+      
+      player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 350, playerpick, 0.5)
+      screen.blit(player_choice_button.image , player_choice_button.rect.topleft)
+      
       if time<=0:
         menu_state = "game_over"
       
       player_sprite.draw(screen)
       monster_sprite.draw(screen)
-      
+  
       #Rock Paper Scissors!!!!!
       if rock_button.draw(screen):
         rpsgame.play("Rock")
+        playerpick = rock_img
+        
       if paper_button.draw(screen):
         rpsgame.play("Paper")
+        playerpick = paper_img
+        
       if scissors_button.draw(screen):
         rpsgame.play("Scissors")
+        playerpick = scissors_img
       
       if rpsgame.wincheck():
         monster_sprite.receive_damage()
@@ -192,9 +211,10 @@ while run:
       if rpsgame.lostcheck():
         menu_state = "main_game"
         rpsgame.defeat = False 
+        time-=15
         
 
-  elif menu_state == "black_jack":
+  elif menu_state == "black_jack":            #BlackJack
     TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
     TimeText.draw()
     time-=1/60
@@ -254,6 +274,8 @@ while run:
        if menu_state == "final_boss":
         if event.key == pygame.K_SPACE:
           monster_sprite.receive_damage(random_damage)
+        if time <= 0 :
+          menu_state = "game_over"  
   pygame.display.update()
   clock.tick(FPS)
   

@@ -8,6 +8,7 @@ class RPS:
         self.computer_choice = "None"
         self.win = 0
         self.lose = 0
+        self.count = 0
         self.victory = False
         self.defeat = False
 
@@ -54,7 +55,8 @@ class RPS:
             self.victory = True
             
         print ('-----------------------')
-
+            
+        
     def wincheck(self):
         return self.victory
     def lostcheck(self):
