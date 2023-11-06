@@ -69,9 +69,9 @@ play_button = button.Button((SCREEN_WIDTH // 2)-100, 300, play_img, 4)
 exit_button = button.Button((SCREEN_WIDTH // 2)-100, 500, exit_img, 4)
 attack_button = button.Button((SCREEN_WIDTH // 2)-400, 580, attack_img, 4)
 
-rock_button = button.Button((SCREEN_WIDTH // 2)-450, 550, rock_img, 1)
+rock_button = button.Button((SCREEN_WIDTH // 2)-200, 550, rock_img, 1)
 paper_button = button.Button((SCREEN_WIDTH // 2)-50, 550, paper_img, 1)
-scissors_button = button.Button((SCREEN_WIDTH // 2)+350, 550, scissors_img, 1)
+scissors_button = button.Button((SCREEN_WIDTH // 2)+100, 550, scissors_img, 1)
 
 playerpick = rock_img
 player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 300, playerpick, 1)
