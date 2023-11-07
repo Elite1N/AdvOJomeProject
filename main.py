@@ -74,7 +74,8 @@ paper_button = button.Button((SCREEN_WIDTH // 2)-50, 550, paper_img, 1)
 scissors_button = button.Button((SCREEN_WIDTH // 2)+100, 550, scissors_img, 1)
 
 playerpick = rock_img
-player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 300, playerpick, 1)
+monsterpick = rock_img
+
 
 rpsgame = rps.RPS("None")
 
@@ -175,14 +176,17 @@ while run:
       TimeText.draw()
       time-=1/60
       
-      Result = textobject.Text(640,150,32,(196, 43, 43),f'{rpsgame.win} - {rpsgame.lose}',screen)
+      Result = textobject.Text(640,250,60,(196, 43, 43),f'{rpsgame.win} - {rpsgame.lose}',screen)
       Result.draw()
       
-      RoundCount = textobject.Text(640,475,32,(250, 250, 250),f'Round {rpsgame.win + rpsgame.lose} / 3',screen)
+      RoundCount = textobject.Text(640,485,32,(250, 250, 250),f'Round {rpsgame.win + rpsgame.lose} / 3',screen)
       RoundCount.draw()
       
       player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 350, playerpick, 0.5)
       screen.blit(player_choice_button.image , player_choice_button.rect.topleft)
+      
+      monster_choice_button = button.Button((SCREEN_WIDTH // 2)+200, 120, monsterpick, 0.8)
+      screen.blit(monster_choice_button.image , monster_choice_button.rect.topleft)
       
       if time<=0:
         menu_state = "game_over"
@@ -202,6 +206,13 @@ while run:
       if scissors_button.draw(screen):
         rpsgame.play("Scissors")
         playerpick = scissors_img
+        
+      if rpsgame.computer_choice == "Rock":
+        monsterpick = rock_img
+      elif rpsgame.computer_choice == "Paper":
+        monsterpick = paper_img 
+      else:
+        monsterpick = scissors_img
       
       if rpsgame.wincheck():
         monster_sprite.receive_damage()
