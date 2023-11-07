@@ -110,7 +110,7 @@ while run:
   #check if the options menu is open
   elif menu_state == "main_game":
       time-=1/60
-      TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+      TimeText = textobject.Text(640,100,'freesansbold.ttf', 32,(196, 43, 43),f'{round(time,1)}',screen)
       TimeText.draw()
       if time<=0:
         menu_state = "game_over"
@@ -161,7 +161,7 @@ while run:
     
     if monster_health == 0:
        menu_state = "game_over"
-    TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+    TimeText = textobject.Text(640,100,'freesansbold.ttf', 32,(196, 43, 43),f'{round(time,1)}',screen)
     TimeText.draw()
     time-=1/60
      
@@ -172,14 +172,14 @@ while run:
         run = False
   
   elif menu_state == "RPS":               #Rock Paper Scissors
-      TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+      TimeText = textobject.Text(640,100,'freesansbold.ttf', 32,(196, 43, 43),f'{round(time,1)}',screen)
       TimeText.draw()
       time-=1/60
       
-      Result = textobject.Text(640,250,60,(196, 43, 43),f'{rpsgame.win} - {rpsgame.lose}',screen)
+      Result = textobject.Text(640,250,'freesansbold.ttf', 60, (196, 43, 43),f'{rpsgame.win} - {rpsgame.lose}',screen)
       Result.draw()
       
-      RoundCount = textobject.Text(640,485,32,(250, 250, 250),f'Round {rpsgame.win + rpsgame.lose} / 3',screen)
+      RoundCount = textobject.Text(640,485,'freesansbold.ttf', 32, (250, 250, 250),f'Round {rpsgame.win + rpsgame.lose} / 3',screen)
       RoundCount.draw()
       
       player_choice_button = button.Button((SCREEN_WIDTH // 2)-450, 350, playerpick, 0.5)
@@ -226,7 +226,7 @@ while run:
         
 
   elif menu_state == "black_jack":            #BlackJack
-    TimeText = textobject.Text(640,100,32,(196, 43, 43),f'{round(time,1)}',screen)
+    TimeText = textobject.Text(640,100,'freesansbold.ttf', 32,(196, 43, 43),f'{round(time,1)}',screen)
     TimeText.draw()
     time-=1/60
     if not(bjvalid):
